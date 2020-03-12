@@ -32,7 +32,7 @@ const isEmpty = (data: unknown) => {
 
 /* create a timestamp in the form of [hh:mm:ss] */
 
-const getTimestamp = () => `\n\n\n\n\n[${dts.format(new Date(), 'hh:mm:ss')}]: `
+const getTimestamp = () => `[${dts.format(new Date(), 'hh:mm:ss')}]: `
 
 /* helper function - get color keyword */
 

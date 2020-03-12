@@ -51,8 +51,9 @@ jot.log('Life is just an 80 or so year interruption from the void. --Nuziburt')
 ```
 
 <div align="center">
-  <img alt="Default Loggers" src="media/default.png" width="65%">
+  <img alt="Default Loggers" src="media/default.png" >
 </div>
+<br />
 
 Change the text color.
 
@@ -64,8 +65,9 @@ jot.log(
 ```
 
 <div align="center">
-  <img alt="Default Loggers" src="media/text-color.png" width="65%">
+  <img alt="Default Loggers" src="media/text-color.png" >
 </div>
+<br />
 
 Or the timestamp color.
 
@@ -77,8 +79,9 @@ jot.log(
 ```
 
 <div align="center">
-  <img alt="Default Loggers" src="media/time-color.png" width="65%">
+  <img alt="Default Loggers" src="media/time-color.png" >
 </div>
+<br />
 
 Or no timestamp at all!
 
@@ -90,8 +93,9 @@ jot.log(
 ```
 
 <div align="center">
-  <img alt="Default Loggers" src="media/no-time.png" width="65%">
+  <img alt="Default Loggers" src="media/no-time.png" >
 </div>
+<br />
 
 ## Author
 
