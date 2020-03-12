@@ -140,7 +140,7 @@ const print = (value: Value, options?: Options) => {
     options?.textColor ? options?.textColor : 'white'
   )
 
-  console.group(chalk.hex(timeHex)(time?.slice(0, -2)))
+  time && console.group(chalk.hex(timeHex)(time?.slice(0, -2)))
   console.log(chalk.hex(textHex)(trace(value.text)))
   console.groupEnd()
 
@@ -204,7 +204,9 @@ const jot = {
   log,
   info: (value: unknown) => console.log(value),
   warn: (value: unknown) => console.log(value),
-  error: (value: unknown) => console.log(value)
+  error: (value: unknown) => console.log(value),
+  box: () => 'Put variable in an object. jot.box(number) => { number: 4 }',
+  count: () => 'Print length of array or number of keys.'
 }
 
 export default { ...jot }

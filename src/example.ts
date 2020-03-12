@@ -32,5 +32,15 @@ jot.log(
 
 jot.log(
   'I always knew that looking back on the tears would make me laugh. But I never knew looking back on the laughs would make me cry.  --The Office\n\n\n\n\n',
-  { showTimestamp: false, textColor: 'mediumturquoise' }
+  { showTimestamp: false, textColor: 'mediumpurple' }
 )
+
+const planet = {
+  name: 'Earth',
+  population: '7.7b',
+  orbitDistance: '1au',
+  orbitPeriod: '365.24d',
+  age: '4.5b'
+}
+
+jot.log(planet, { textColor: 'wheat' })

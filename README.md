@@ -60,7 +60,7 @@ jot.log('Life is just an 80 or so year interruption from the void. --Nuziburt')
 <br />
 <br />
 
-Change the text color.
+You can change the text color.
 
 ```javascript
 import jot from 'jotsy'
@@ -105,13 +105,37 @@ import jot from 'jotsy'
 
 jot.log(
   'I always knew that looking back on the tears would make me laugh. But I never knew looking back on the laughs would make me cry.  --The Office',
-  { showTimestamp: false }
+  { showTimestamp: false, textColor: 'mediumpurple' }
 )
 ```
 
 <br />
 <div align="center">
   <img alt="Default Loggers" src="media/no-time.png" >
+</div>
+<br />
+<br />
+<br />
+
+Objects and arrays print the entire contents.
+
+```typescript
+import jot from 'jotsy'
+
+const planet = {
+  name: 'Earth',
+  population: '7.7b',
+  orbitDistance: '1au',
+  orbitPeriod: '365.24d',
+  age: '4.5b'
+}
+
+jot.log(planet, { textColor: 'wheat' })
+```
+
+<br />
+<div align="center">
+  <img alt="Default Loggers" src="media/trace.png" >
 </div>
 <br />
 <br />
