@@ -47,54 +47,74 @@ yarn add jotsy
 Jot works out of the box.
 
 ```javascript
+import jot from 'jotsy'
+
 jot.log('Life is just an 80 or so year interruption from the void. --Nuziburt')
 ```
 
+<br />
 <div align="center">
   <img alt="Default Loggers" src="media/default.png" >
 </div>
+<br />
+<br />
 <br />
 
 Change the text color.
 
 ```javascript
+import jot from 'jotsy'
+
 jot.log(
   'High self-awareness means that when you look in the mirror, you see yourself as you are—a flawed thinker with endless potential to learn. --Tim Urban',
   { textColor: 'springgreen' }
 )
 ```
 
+<br />
 <div align="center">
   <img alt="Default Loggers" src="media/text-color.png" >
 </div>
+<br />
+<br />
 <br />
 
 Or the timestamp color.
 
 ```javascript
+import jot from 'jotsy'
+
 jot.log(
   "Stay determined——not impatient nor discouraged——and with repeated trial and error, you're bound to reach a splendid outcome eventually. --Koro Sensei",
   { timestampColor: 'dodgerblue' }
 )
 ```
 
+<br />
 <div align="center">
   <img alt="Default Loggers" src="media/time-color.png" >
 </div>
+<br />
+<br />
 <br />
 
 Or no timestamp at all!
 
 ```javascript
+import jot from 'jotsy'
+
 jot.log(
   'I always knew that looking back on the tears would make me laugh. But I never knew looking back on the laughs would make me cry.  --The Office',
   { showTimestamp: false }
 )
 ```
 
+<br />
 <div align="center">
   <img alt="Default Loggers" src="media/no-time.png" >
 </div>
+<br />
+<br />
 <br />
 
 ## Author
