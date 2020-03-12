@@ -24,7 +24,7 @@
 
 <br />
 <div align="center">
-  <img alt="Default Loggers" src="media/demo.mp4" >
+  <blockquote class="imgur-embed-pub" lang="en" data-id="a/07I0rCJ" data-context="false" ><a href="//imgur.com/a/07I0rCJ"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 </div>
 
 ### 🏠 [Homepage](https://github.com/55Cancri/jotsy#readme)
