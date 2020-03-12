@@ -26,7 +26,7 @@
 
 <br />
 <div align="center">
-  <img src="https://i.imgur.com/LbA48O0.mp4" />
+  <img src="https://i.imgur.com/VuQbcxj.gif" />
 </div>
 
 ### 🏠 [Homepage](https://github.com/55Cancri/jotsy#readme)
