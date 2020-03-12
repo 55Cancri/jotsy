@@ -1,34 +1,81 @@
 {
   "name": "jotsy",
-  "version": "1.0.0",
-  "license": "MIT",
+  "version": "1.1.0",
   "author": "Eric Morrison",
+  "description": "A cleaner console.log.",
+  "license": "MIT",
   "keywords": [
+    "ts",
     "log",
     "logger",
     "logging",
+    "typescript",
     "formatting",
     "terminal",
     "console",
     "print"
   ],
-  "description": "A cleaner console.log.",
   "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/55Cancri/jotsy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/55Cancri/jotsy/issues"
+  },
+  "homepage": "https://github.com/55Cancri/jotsy#readme",
+  "jest": {
+    "roots": [
+      "<rootDir>"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testMatch": [
+      "**/*.test.ts"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "globals": {
+      "ts-jest": {
+        "diagnostics": {
+          "warnOnly": true
+        }
+      },
+      "testEnvironment": "node"
+    }
+  },
   "scripts": {
     "start": "npx nodemon",
-    "test": "echo 'Testing?'",
     "build": "npx rimraf ./build && npx tsc",
+    "test": "jest --coverage",
+    "test-watch": "jest --coverage --watch",
+    "demo": "npx ts-node --files ./src/example.ts --project ./tsconfig.json",
     "prepublish": "yarn test"
   },
   "dependencies": {
-    "husky": "^4.2.3"
+    "chalk": "^3.0.0",
+    "date-fns": "^2.10.0",
+    "husky": "^4.2.3",
+    "rxjs": "^6.5.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.0",
+    "@types/test-console": "^1.1.0",
     "cz-conventional-changelog": "^3.1.0",
+    "eslint": "^6.8.0",
+    "jest": "^25.1.0",
     "prettier": "^1.19.1",
+    "test-console": "^1.1.0",
     "ts-jest": "^25.2.1",
     "typescript": "^3.8.3"
   },
