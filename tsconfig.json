@@ -14,6 +14,7 @@
     "forceConsistentCasingInFileNames": true,
     "typeRoots": ["node_modules/@types"]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "coverage", "**/tests/*"]
+  // "include": ["src"],
+  "exclude": ["coverage", "miscellaneous", "quokka"]
+  // "exclude": ["node_modules", "coverage", "**/tests/*"]
 }

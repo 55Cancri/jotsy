@@ -243,7 +243,8 @@ const jot = {
   }
 }
 
-export default { ...jot }
+export default jot
+// export default { ...jot }
 // jot.log('You can provide color keywords.', {
 //   timestampColor: '#aaa',
 //   textColor: 'springgreen'
