@@ -22,10 +22,12 @@
 
 > Print cleaner, colorful logs to console.
 
-<br />
+[Imgur](https://i.imgur.com/LbA48O0.mp4)
+
+<!-- <br />
 <div align="center">
   <img src="https://imgur.com/a/07I0rCJ" />
-</div>
+</div> -->
 
 ### 🏠 [Homepage](https://github.com/55Cancri/jotsy#readme)
 
