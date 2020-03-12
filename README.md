@@ -44,9 +44,9 @@ yarn add jotsy
 
 ## Usage
 
-Jot works out of the box.
+Jot just works out of the box.
 
-```javascript
+```typescript
 import jot from 'jotsy'
 
 jot.log('Life is just an 80 or so year interruption from the void. --Nuziburt')
@@ -60,9 +60,9 @@ jot.log('Life is just an 80 or so year interruption from the void. --Nuziburt')
 <br />
 <br />
 
-You can change the text color.
+You can change the color of the text.
 
-```javascript
+```typescript
 import jot from 'jotsy'
 
 jot.log(
@@ -79,9 +79,9 @@ jot.log(
 <br />
 <br />
 
-Or the timestamp color.
+Or the color of the timestamp.
 
-```javascript
+```typescript
 import jot from 'jotsy'
 
 jot.log(
@@ -98,9 +98,9 @@ jot.log(
 <br />
 <br />
 
-Or no timestamp at all!
+Or how about no timestamp at all?
 
-```javascript
+```typescript
 import jot from 'jotsy'
 
 jot.log(
@@ -159,7 +159,3 @@ Give a ⭐️ if this project helped you!
 
 Copyright © 2020 [Eric Morrison](https://github.com/55Cancri).<br />
 This project is [MIT](https://github.com/55Cancri/jotsy/blob/master/LICENSE) licensed.
-
----
-
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
