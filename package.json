@@ -1,8 +1,8 @@
 {
   "name": "jotsy",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Eric Morrison",
-  "description": "A cleaner console.log.",
+  "description": "Minimalist, colorful log outputs.",
   "license": "MIT",
   "keywords": [
     "ts",
@@ -15,7 +15,11 @@
     "console",
     "print"
   ],
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/55Cancri/jotsy.git"
@@ -24,40 +28,14 @@
     "url": "https://github.com/55Cancri/jotsy/issues"
   },
   "homepage": "https://github.com/55Cancri/jotsy#readme",
-  "jest": {
-    "roots": [
-      "<rootDir>"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testMatch": [
-      "**/*.test.ts"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "globals": {
-      "ts-jest": {
-        "diagnostics": {
-          "warnOnly": true
-        }
-      },
-      "testEnvironment": "node"
-    }
-  },
   "scripts": {
     "start": "npx nodemon",
-    "build": "npx rimraf ./build && npx tsc",
-    "test": "jest --coverage",
-    "test-watch": "jest --coverage --watch",
-    "demo": "npx ts-node --files ./src/example.ts --project ./tsconfig.json",
-    "prepublish": "yarn test"
+    "build": "npx rimraf ./dist && npx tsc",
+    "test": "jest --coverage --config jestconfig.json",
+    "test-watch": "jest --coverage --watch --config jestconfig.json",
+    "demo": "npx ts-node --files ./experiment/example.ts --project ./tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "yarn test"
   },
   "dependencies": {
     "chalk": "^3.0.0",

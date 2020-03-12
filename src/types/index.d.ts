@@ -23,5 +23,3 @@ declare global {
     text: string
   }
 }
-
-export default {}

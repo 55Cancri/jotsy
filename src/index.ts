@@ -128,7 +128,9 @@ const print = (value: Value, options?: Options) => {
   const output = { ...configuration, finalMessage }
 
   if (typeof value.text === 'string') {
-    console.log('\n\n\n\n\n' + finalMessage + '\n\n\n\n\n')
+    console.log(finalMessage)
+    // for image capture
+    // console.log('\n\n\n\n\n' + finalMessage + '\n\n\n\n\n')
 
     return output
   }
