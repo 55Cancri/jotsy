@@ -24,17 +24,74 @@
 
 ### 🏠 [Homepage](https://github.com/55Cancri/jotsy#readme)
 
+## Description
+
+Clean, simple, logging utility. Jot adds color and minimalism to your logs and errors.
+
 ## Install
 
+### NPM
+
 ```sh
-yarn intall jotsy
+npm i jotsy
+```
+
+### Yarn
+
+```sh
+yarn add jotsy
 ```
 
 ## Usage
 
-```typescript
-jot.log('Clean, colorful, minimalist log.')
+Jot works out of the box.
+
+```javascript
+jot.log('Life is just an 80 or so year interruption from the void. --Nuziburt')
 ```
+
+<div align="center">
+  <img alt="Default Loggers" src="media/default.png" width="65%">
+</div>
+
+Change the text color.
+
+```javascript
+jot.log(
+  'High self-awareness means that when you look in the mirror, you see yourself as you are—a flawed thinker with endless potential to learn. --Tim Urban',
+  { textColor: 'springgreen' }
+)
+```
+
+<div align="center">
+  <img alt="Default Loggers" src="media/text-color.png" width="65%">
+</div>
+
+Or the timestamp color.
+
+```javascript
+jot.log(
+  "Stay determined——not impatient nor discouraged——and with repeated trial and error, you're bound to reach a splendid outcome eventually. --Koro Sensei",
+  { timestampColor: 'dodgerblue' }
+)
+```
+
+<div align="center">
+  <img alt="Default Loggers" src="media/time-color.png" width="65%">
+</div>
+
+Or no timestamp at all!
+
+```javascript
+jot.log(
+  'I always knew that looking back on the tears would make me laugh. But I never knew looking back on the laughs would make me cry.  --The Office',
+  { showTimestamp: false }
+)
+```
+
+<div align="center">
+  <img alt="Default Loggers" src="media/no-time.png" width="65%">
+</div>
 
 ## Author
 

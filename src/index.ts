@@ -32,7 +32,7 @@ const isEmpty = (data: unknown) => {
 
 /* create a timestamp in the form of [hh:mm:ss] */
 
-const getTimestamp = () => `[${dts.format(new Date(), 'hh:mm:ss')}]: `
+const getTimestamp = () => `\n\n\n\n\n[${dts.format(new Date(), 'hh:mm:ss')}]: `
 
 /* helper function - get color keyword */
 
@@ -100,9 +100,9 @@ const getColor = (
 /* time function - optionally apply timestamp */
 
 const showtime = (value: Value, options?: Options) =>
-  !options || options?.showTimestamp || options?.timestampColor
-    ? { ...value, timestamp: getTimestamp() }
-    : value
+  options?.showTimestamp === false
+    ? value
+    : { ...value, timestamp: getTimestamp() }
 
 const time = compose(getColor('timestamp', 'timestampColor', 'grey'), showtime)
 
