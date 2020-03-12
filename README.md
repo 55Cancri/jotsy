@@ -1,20 +1,22 @@
 <h1 align="center">Welcome to jot 👋</h1>
-![forthebadge](https://forthebadge.com/images/badges/built-with-science.svg) ![forthebadge](https://forthebadge.com/images/badges/powered-by-electricity.svg)
-
-![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg?style=flat-square) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
 
 <p>
   <a href="https://www.npmjs.com/package/jot" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/jot.svg">
+    <img alt="Version" src="https://forthebadge.com/images/badges/built-with-science.svg">
+  </a>
+  <a href="https://www.npmjs.com/package/jot" target="_blank">
+    <img alt="Version" src="https://forthebadge.com/images/badges/powered-by-electricity.svg">
+  </a>
+</p>
+<p>
+  <a href="https://www.npmjs.com/package/jot" target="_blank">
+    <img alt="Version" src="https://img.shields.io/badge/contributions-welcome-orange.svg?style=flat-square">
   </a>
   <a href="https://github.com/55Cancri/jotsy#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+    <img alt="Documentation" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square" />
   </a>
   <a href="https://github.com/55Cancri/jotsy/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://github.com/55Cancri/jotsy/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/55Cancri/jot" />
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square" />
   </a>
 </p>
 
