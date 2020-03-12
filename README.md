@@ -22,11 +22,20 @@
 
 > Print cleaner, colorful logs to console.
 
+<br />
+<div align="center">
+  <img alt="Default Loggers" src="media/demo.mp4" >
+</div>
+
 ### 🏠 [Homepage](https://github.com/55Cancri/jotsy#readme)
 
 ## Description
 
 Clean, simple, logging utility. Jot adds color and minimalism to your logs and errors.
+
+<br />
+<br />
+<br />
 
 ## Install
 

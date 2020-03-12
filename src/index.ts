@@ -81,7 +81,7 @@ const getColor = (
     const color = options[option]
 
     if (typeof color !== 'string') {
-      throw new Error('The color option must be a string')
+      throw new Error('The color option must be a string.')
     }
 
     const { isKeyword, isHex, keyword } = getColorKeyword(color)
@@ -89,7 +89,7 @@ const getColor = (
     if (isKeyword) return { ...value, [key]: chalk.hex(colors[keyword])(text) }
     if (isHex) return { ...value, [key]: chalk.hex(keyword)(text) }
 
-    throw new Error('You provided an invalid color to jot')
+    throw new Error('You provided an invalid color to jot.')
   }
 
   const coloredText = text ? chalk.keyword(defaultColor)(text) : undefined
@@ -128,7 +128,7 @@ const print = (value: Value, options?: Options) => {
   const output = { ...configuration, finalMessage }
 
   if (typeof value.text === 'string') {
-    console.log(finalMessage)
+    console.log('\n\n\n\n\n' + finalMessage + '\n\n\n\n\n')
 
     return output
   }
@@ -155,7 +155,7 @@ const logError = (error: Error, isInternal?: boolean) => {
   const [, errorType] = stackLineOne.match(/^(.*)\:/i) || []
 
   /* get the line number e.g. 11:43 */
-  const [, lineNumber] = stackLineTwo.match(/\:(.*)$/i) || []
+  const [, lineNumber] = stackLineTwo.match(/\:([1-9\:]*)/i) || []
 
   /* find the first and last index of the problem file name */
   const indexOflastSlash = stackLineTwo.lastIndexOf('/') + 1
@@ -174,7 +174,7 @@ const logError = (error: Error, isInternal?: boolean) => {
         `${errorType} in ${fileName} on line ${lineNumber}:`
       )
   /* define the error cause */
-  const cause = chalk.hex(colors.red)(` ${error.message}. `)
+  const cause = chalk.hex(colors.red)(` ${error.message} `)
 
   /* concatenate the location and cause in a message */
   const message = `${location}${cause}`
@@ -202,11 +202,89 @@ export const log = (value: unknown, options?: Options) =>
 
 const jot = {
   log,
-  info: (value: unknown) => console.log(value),
-  warn: (value: unknown) => console.log(value),
-  error: (value: unknown) => console.log(value),
-  box: () => 'Put variable in an object. jot.box(number) => { number: 4 }',
-  count: () => 'Print length of array or number of keys.'
+  info: (value: unknown) => {
+    try {
+      throw new Error('jot.info() coming soon!')
+    } catch (error) {
+      logError(error, true)
+    }
+  },
+  warn: (value: unknown) => {
+    try {
+      throw new Error('jot.warn() coming soon!')
+    } catch (error) {
+      logError(error, true)
+    }
+  },
+  error: (value: unknown) => {
+    try {
+      throw new Error('jot.error() coming soon!')
+    } catch (error) {
+      logError(error, true)
+    }
+  },
+  frame: (value: unknown) => {
+    try {
+      const t = 'Put variable in an object. jot.box(number) => { number: 4 }'
+      throw new Error('jot.frame() coming soon!')
+    } catch (error) {
+      logError(error, true)
+    }
+  },
+  count: (value: unknown) => {
+    try {
+      const t = 'Print length of array or number of keys.'
+      throw new Error('jot.count() coming soon!')
+    } catch (error) {
+      logError(error, true)
+    }
+  }
 }
 
 export default { ...jot }
+// jot.log('You can provide color keywords.', {
+//   timestampColor: '#aaa',
+//   textColor: 'springgreen'
+// })
+
+// jot.log('But hex values work too!', {
+//   timestampColor: 'aquamarine',
+//   textColor: 'cornflowerblue'
+// })
+
+// jot.log('The default looks nice right?')
+
+// jot.log('And logs can be timeless!', {
+//   textColor: 'tan'
+// })
+
+// ======================================================
+
+// jot.log(
+//   'Life is just an 80 or so year interruption from the void. --Nuziburt\n\n\n\n\n'
+// )
+
+// jot.log(
+//   'High self-awareness means that when you look in the mirror, you see yourself as you are—a flawed thinker with endless potential to learn. --Tim Urban.\n\n\n\n\n',
+//   { textColor: 'springgreen' }
+// )
+
+// jot.log(
+//   "Stay determined——not impatient nor discouraged——and with repeated trial and error, you're bound to reach a splendid outcome eventually. --Koro Sensei\n\n\n\n\n",
+//   { timestampColor: 'dodgerblue' }
+// )
+
+// jot.log(
+//   'I always knew that looking back on the tears would make me laugh. But I never knew looking back on the laughs would make me cry.  --The Office\n\n\n\n\n',
+//   { showTimestamp: false, textColor: 'mediumpurple' }
+// )
+
+// const planet = {
+//   name: 'Earth',
+//   population: '7.7b',
+//   orbitDistance: '1au',
+//   orbitPeriod: '365.24d',
+//   age: '4.5b'
+// }
+
+// jot.log(planet, { textColor: 'wheat' })
