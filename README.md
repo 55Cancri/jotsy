@@ -1,4 +1,8 @@
 <h1 align="center">Welcome to jot 👋</h1>
+![forthebadge](https://forthebadge.com/images/badges/built-with-science.svg) ![forthebadge](https://forthebadge.com/images/badges/powered-by-electricity.svg)
+
+![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg?style=flat-square) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
+
 <p>
   <a href="https://www.npmjs.com/package/jot" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/jot.svg">
