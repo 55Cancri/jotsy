@@ -21,26 +21,20 @@
 ## Install
 
 ```sh
-yarn install
+yarn intall jotsy
 ```
 
 ## Usage
 
-```sh
-yarn run start
-```
-
-## Run tests
-
-```sh
-yarn run test
+```typescript
+jot.log('Clean, colorful, minimalist log.')
 ```
 
 ## Author
 
 👤 **Eric Morrison**
 
-* Github: [@55Cancri](https://github.com/55Cancri)
+- Github: [@55Cancri](https://github.com/55Cancri)
 
 ## 🤝 Contributing
 
@@ -55,5 +49,6 @@ Give a ⭐️ if this project helped you!
 Copyright © 2020 [Eric Morrison](https://github.com/55Cancri).<br />
 This project is [MIT](https://github.com/55Cancri/jotsy/blob/master/LICENSE) licensed.
 
-***
+---
+
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
