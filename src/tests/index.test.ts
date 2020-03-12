@@ -1,5 +1,6 @@
+// import jot from '../index'
+import * as jot from '../index'
 import chalk from 'chalk'
-import jot from '../index'
 
 type Config = { text: string; color?: string }
 

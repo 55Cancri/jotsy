@@ -1,3 +1,3 @@
-import jot from '../src/index'
+import * as jot from '../src/index'
 
 // jot.count('Count')

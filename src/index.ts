@@ -5,6 +5,30 @@ import * as op from 'rxjs/operators'
 import * as dts from 'date-fns'
 import { colors } from './assets/colors'
 
+// define the types
+
+/**
+ * An enhanced string type that offers hints for specific options.
+ */
+export type LiteralUnion<T extends U, U = string> = T | (U & {})
+
+export type ColorKeyword = typeof colors
+
+export type ColorKeywords = LiteralUnion<keyof ColorKeyword>
+
+export type Options = {
+  showTimestamp?: boolean
+  timestampColor?: ColorKeywords
+  textColor?: ColorKeywords
+}
+
+export type Output = Options & { finalMessage: string }
+
+export type Value = {
+  timestamp?: string
+  text: string
+}
+
 /* function composition */
 
 const compose = <T extends Function>(...fns: T[]) => (...x: any[]) =>
@@ -202,48 +226,48 @@ const composedLog = compose(print, text, time, box('text'))
 export const log = (value: unknown, options?: Options) =>
   wrap(composedLog)(value, options)
 
-const jot = {
-  log,
-  info: (value: unknown) => {
-    try {
-      throw new Error('jot.info() coming soon!')
-    } catch (error) {
-      logError(error, true)
-    }
-  },
-  warn: (value: unknown) => {
-    try {
-      throw new Error('jot.warn() coming soon!')
-    } catch (error) {
-      logError(error, true)
-    }
-  },
-  error: (value: unknown) => {
-    try {
-      throw new Error('jot.error() coming soon!')
-    } catch (error) {
-      logError(error, true)
-    }
-  },
-  frame: (value: unknown) => {
-    try {
-      const t = 'Put variable in an object. jot.box(number) => { number: 4 }'
-      throw new Error('jot.frame() coming soon!')
-    } catch (error) {
-      logError(error, true)
-    }
-  },
-  count: (value: unknown) => {
-    try {
-      const t = 'Print length of array or number of keys.'
-      throw new Error('jot.count() coming soon!')
-    } catch (error) {
-      logError(error, true)
-    }
+export const info = (value: unknown) => {
+  try {
+    throw new Error('jot.info() coming soon!')
+  } catch (error) {
+    logError(error, true)
   }
 }
 
-export default jot
+export const warn = (value: unknown) => {
+  try {
+    throw new Error('jot.warn() coming soon!')
+  } catch (error) {
+    logError(error, true)
+  }
+}
+
+export const error = (value: unknown) => {
+  try {
+    throw new Error('jot.error() coming soon!')
+  } catch (error) {
+    logError(error, true)
+  }
+}
+
+export const frame = (value: unknown) => {
+  try {
+    const t = 'Put variable in an object. jot.box(number) => { number: 4 }'
+    throw new Error('jot.frame() coming soon!')
+  } catch (error) {
+    logError(error, true)
+  }
+}
+
+export const count = (value: unknown) => {
+  try {
+    const t = 'Print length of array or number of keys.'
+    throw new Error('jot.count() coming soon!')
+  } catch (error) {
+    logError(error, true)
+  }
+}
+
 // export default { ...jot }
 // jot.log('You can provide color keywords.', {
 //   timestampColor: '#aaa',
