@@ -3,7 +3,7 @@
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
   },
-  "testMatch": ["tests/*.test.ts"],
+  "testMatch": ["**/tests/*.test.ts"],
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
   "globals": {
     "ts-jest": {
