@@ -24,7 +24,7 @@
 
 <br />
 <div align="center">
-  <img src="media/demo-2x.gif" />
+  <img src="media/demo.gif" />
 </div>
 
 ### 🏠 [Homepage](https://github.com/55Cancri/jotsy#readme)

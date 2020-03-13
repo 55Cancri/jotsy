@@ -1,3 +1,5 @@
 import * as jot from '../src/index'
 
-// jot.count('Count')
+jot.log('Hello there.', { textColor: 'orange' })
+
+jot.count('Testing.')

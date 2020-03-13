@@ -1,6 +1,6 @@
 {
   "name": "jotsy",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "author": "Eric Morrison",
   "description": "Minimalist, colorful log outputs.",
   "license": "MIT",
@@ -33,7 +33,9 @@
     "build": "npx rimraf ./dist && npx tsc",
     "test": "jest --coverage --config jestconfig.json",
     "test-watch": "jest --coverage --watch --config jestconfig.json",
-    "demo": "npx ts-node --files ./experiment/example.ts --project ./tsconfig.json",
+    "demo": "npx ts-node --files ./miscellaneous/example.ts --project ./tsconfig.json",
+    "demo-watch": "ts-node-dev --respawn ./miscellaneous/example.ts",
+    "demo-watch-1": "ts-node-dev --respawn --watch ./miscellaneous/, ./src/",
     "prepare": "npm run build",
     "prepublishOnly": "yarn test"
   },
@@ -55,6 +57,7 @@
     "prettier": "^1.19.1",
     "test-console": "^1.1.0",
     "ts-jest": "^25.2.1",
+    "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.8.3"
   },
   "config": {
