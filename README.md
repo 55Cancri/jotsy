@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to jot 👋</h1>
+<h1 align="center">Welcome to Jot 👋</h1>
 
 <p>
   <a href="https://www.npmjs.com/package/jot" target="_blank">
@@ -20,14 +20,18 @@
   </a>
 </p>
 
-> Print cleaner, colorful logs to console.
-
 <br />
 <div align="center">
   <img src="media/demo.gif" />
 </div>
 
+<br />
+<br />
+<br />
+
 ### 🏠 [Homepage](https://github.com/55Cancri/jotsy#readme)
+
+<br />
 
 ## Description
 
@@ -53,7 +57,7 @@ yarn add jotsy
 
 ## Usage
 
-Jot just works out of the box.
+Jot works out of the box.
 
 ```typescript
 import jot from 'jotsy'

@@ -1,5 +1,15 @@
 import * as jot from '../src/index'
 
-jot.log('Hello there.', { textColor: 'orange' })
+jot.log('Regular log.')
 
-jot.count('Testing.')
+jot.info('Info log.', { showMemoryUsage: true })
+
+jot.warn('Warning log.')
+
+jot.error('Error log.')
+
+jot.count('Count log.', {
+  label: 'variable',
+  textColor: 'springgreen',
+  timestampColor: 'palegreen'
+})
