@@ -5,38 +5,53 @@ import * as util from 'util'
 import * as op from 'rxjs/operators'
 import * as d from 'date-fns'
 import { colors } from './assets/colors'
+import type * as Ty from './types'
+import type {
+  LiteralUnion,
+  ColorKeyword,
+  ColorKeywords,
+  CountOptions,
+  InfoOptions,
+  Options,
+  Value
+} from './types'
+
+
+
+
 
 // define the types
+type Output = {}
 
 /**
  * An enhanced string type that offers hints for specific options.
  */
-export type LiteralUnion<T extends U, U = string> = T | (U & {})
+// export type LiteralUnion<T extends U, U = string> = T | (U & {})
 
-export type ColorKeyword = typeof colors
+// export type ColorKeyword = typeof colors
 
-export type ColorKeywords = LiteralUnion<keyof ColorKeyword>
+// export type ColorKeywords = LiteralUnion<keyof ColorKeyword>
 
-export type Options = {
-  showTimestamp?: boolean
-  timestampColor?: ColorKeywords
-  textColor?: ColorKeywords
-}
+// export type Options = {
+//   showTimestamp?: boolean
+//   timestampColor?: ColorKeywords
+//   textColor?: ColorKeywords
+// }
 
-export type InfoOptions = Options & {
-  showMemoryUsage?: boolean
-}
+// export type InfoOptions = Options & {
+//   showMemoryUsage?: boolean
+// }
 
-export type CountOptions = Options & {
-  label?: string
-}
+// export type CountOptions = Options & {
+//   label?: string
+// }
 
-export type Output = Options & { finalMessage: string }
+// export type Output = Options & { finalMessage: string }
 
-export type Value = {
-  timestamp?: string
-  text: string
-}
+// export type Value = {
+//   timestamp?: string
+//   text: string
+// }
 
 /* function composition */
 
@@ -65,7 +80,7 @@ const isEmpty = (data: unknown) => {
 
 /* create a timestamp in the form of [hh:mm:ss] */
 
-const getTimestamp = () => `[${d.format(new Date(), 'hh:mm:ss')}]: `
+const getOldTimestamp = () => `[${d.format(new Date(), 'hh:mm:ss')}]: `
 
 /* helper function - get color keyword */
 
@@ -135,13 +150,13 @@ const getColor = (
 const showtime = (value: Value, options?: Options) =>
   options?.showTimestamp === false
     ? value
-    : { ...value, timestamp: getTimestamp() }
+    : { ...value, timestamp: getOldTimestamp() }
 
 const time = compose(getColor('timestamp', 'timestampColor', 'grey'), showtime)
 
 /* text function - optionally apply color to text */
 
-const text = compose(getColor('text', 'textColor'))
+const oldText = compose(getColor('text', 'textColor'))
 
 /* print function - log result to console */
 
@@ -200,7 +215,7 @@ const logError = (error: Error, isInternal?: boolean) => {
   const fileName = stackLineTwo.slice(indexOflastSlash, indexOfFileNameEnd)
 
   /* mark the timestamp */
-  const timestamp = chalk.hex(colors.grey)(getTimestamp())
+  const timestamp = chalk.hex(colors.grey)(getOldTimestamp())
 
   /* define the error location */
   const location = isInternal
@@ -230,29 +245,29 @@ const wrap = <T extends Function>(f: T) => (...args: any[]) => {
 
 /* log function - compose transformation functions */
 
-const composedLog = compose(print, text, time, box('text'))
+const composedLog = compose(print, oldText, time, box('text'))
 
-export const log = (value: unknown, options?: Options) =>
+export const log2 = (value: unknown, options?: Options) =>
   wrap(composedLog)(value, options)
 
 /* ============================================================ */
 
 /* color a string */
-const colorize = (text: string) => (hex: string) => chalk.hex(hex)(text)
+const colorize = (text: unknown) => (hex: string) => chalk.hex(hex)(typeof text === 'string' ? text : trace(text))
 
 /* get the current time */
 const getTimestamp = () => `[${d.format(new Date(), 'hh:mm:ss')}]: `
 
 /* throw an error with a custom error message */
-const throwError = (message: string) => () => {
+const throwError = (message: string) => (_: any) => {
   throw new Error(message)
 }
 
 /* convert n arguments into an array */
-const stringsToArray = (...args) => args
+const stringsToArray = (...args: unknown[]) => args
 
 /* concat an array of n number of strings */
-const reduceConcat = R.reduce(R.concat, '')
+const reduceConcat = R.reduce(R.concat as any, '')
 
 const concatStrings = R.pipe(stringsToArray, reduceConcat)
 
@@ -267,9 +282,12 @@ const getHex = (color: string) =>
 /* ramda - create timestamp */
 const timestamp = (defaultColor: ColorKeywords = 'darkgray') =>
   R.pipe(
-    R.prop('timestampColor'),
+    R.prop('timestampColor') as any,
     R.ifElse(
-      R.either(R.and(R.is(String), R.complement(R.isEmpty)), R.isNil),
+      R.either(
+        R.and(R.is(String) as any, R.complement(R.isEmpty)) as any,
+        R.isNil
+      ),
       R.identity,
       throwError('Timestamp must be color.')
     ),
@@ -279,9 +297,9 @@ const timestamp = (defaultColor: ColorKeywords = 'darkgray') =>
   )
 
 /* create text */
-const text = (text: string, defaultColor: ColorKeywords = 'white') =>
+const text = (text: unknown, defaultColor: ColorKeywords = 'white') =>
   R.pipe(
-    R.prop('textColor'),
+    R.prop('textColor') as any,
     R.ifElse(
       R.either(R.both(R.is(String), R.complement(R.isEmpty)), R.isNil),
       R.identity,
@@ -291,6 +309,17 @@ const text = (text: string, defaultColor: ColorKeywords = 'white') =>
     getHex,
     colorize(text)
   )
+
+export const log = (input: unknown, options?: Options) => {
+  /* ramda - log to the console */
+  const output = R.converge(concatStrings, [
+    timestamp('darkgray'),
+    text(input, 'white')
+  ])
+
+  /* log colorful message */
+  return console.log(output(options))
+}
 
 export const info = (input: unknown, options?: InfoOptions) => {
   /* helper function - calculate the memory usage in MB */
@@ -311,7 +340,7 @@ export const info = (input: unknown, options?: InfoOptions) => {
 
   /* ramda - conditionally create memory usage */
   const memoryUsage = R.pipe(
-    R.prop('showMemoryUsage'),
+    R.prop('showMemoryUsage') as any,
     R.cond([
       [R.either(R.equals(true), R.isNil), getMemoryUsage],
       [R.equals(false), R.always(undefined)],
@@ -354,45 +383,48 @@ export const error = (input: unknown, options?: Options) => {
 
 export const count = (input: unknown, options?: CountOptions) => {
   /* helper function - create message */
-  const logLength = ([type, unit]: [string, string]) => (length: number) => {
+  const logLength = ([type, unit]: [string, string]) => (
+    variableLength: number
+  ) => {
     const value =
       typeof options?.label === 'string'
         ? `"${chalk.italic(options.label)}"`
         : `The ${type}`
-    return text(`${value} has ${length} ${unit}.`)(options)
+
+    // @ts-ignore
+    return text(`${value} has ${variableLength} ${unit}.`)(options)
   }
 
   /* ramda - count the variable */
-  const length = (input: string) => (options: Options) =>
+  const length = (text: unknown) => (options: Options) =>
     R.pipe(
       R.cond([
         [R.is(String), R.pipe(R.length, logLength(['string', 'characters']))],
         [R.is(Array), R.pipe(R.length, logLength(['array', 'items']))],
         [R.is(Object), R.pipe(R.keys, R.length, logLength(['object', 'keys']))],
-        [(R.T, throwError('Value is not iterable.'))]
+        [R.T, () => false]
       ])
-    )(input)
+      // @ts-ignore
+    )(text)
+
+  const nullInput = () => R.isNil(input)
 
   /* ramda - log to the console */
-  const output = R.converge(concatStrings, [timestamp(), length(input)])
+  const output = R.ifElse(
+    nullInput,
+    R.curry(error)('Value is not iterable.'),
+    // R.converge(concatStrings, [timestamp(), R.flip(length)(input)])
+    R.converge(concatStrings, [timestamp(), length(input)])
+  )
 
   /* log colorful message */
-  return console.log(output(options))
+  return output(options) && console.log(output(options))
 }
 
-// const ltrBuddy = rx
-//   .of(input!)
-//   .pipe(
-//     op.switchMap(value => {
-//       if (Array.isArray(value)) return 'array has ' + value.length + ' items.'
-//       if (typeof value === 'string')
-//         return 'string has ' + value.length + ' characters.'
-//       if (typeof value === 'object' && value !== null)
-//         return 'object has ' + Object.keys(value).length + ' keys.'
-
-//       return 'Value is not countable.'
-//     })
-//   )
-//   .subscribe()
-
-export as namespace jot
+export {
+  ColorKeywords,
+  CountOptions,
+  InfoOptions,
+  Options,
+  Value
+}

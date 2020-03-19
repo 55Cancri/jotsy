@@ -39,31 +39,20 @@ const applyChalk = (config: Config[]) =>
 /* mock out console.log */
 // beforeEach(() => jest.spyOn(console, 'log').mockImplementation(() => {}))
 
+afterEach(() => jest.restoreAllMocks())
+
 describe('#jot.log', () => {
   it('logs with default options', () => {
     const message = 'The way to get started is to quit talking and begin doing.'
-    const { finalMessage, ...output } = jot.log(message)!
 
-    const defaultOptions = {
-      showTimestamp: true,
-      timestampColor: 'grey',
-      textColor: 'white'
-    }
+    /* setup spy */
+    const spy = jest.spyOn(jot, 'log')
 
-    const timestamp = extractTimestamp(finalMessage)
+    /* log message */
+    jot.log(message)
 
-    const comparator = `${chalk.keyword('grey')(timestamp)}${chalk.keyword(
-      'white'
-    )(message)}`
-
-    /* ensure options are correct */
-    expect(output).toEqual(defaultOptions)
-
-    /* ensure a time is included in the form of [xx:xx:xx]: */
-    expect(hasTime(finalMessage)).toBe(true)
-
-    /* ensure the surrounding chalk ansi color escape codes are correct */
-    expect(finalMessage).toEqual(comparator)
+    /* assert on call */
+    expect(spy).toHaveBeenCalledWith(message)
   })
 
   it('logs with timestamp', () => {
@@ -72,37 +61,19 @@ describe('#jot.log', () => {
       "Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking."
 
     /* define the text color */
-    const textColor: ColorKeywords = 'palegreen'
+    const textColor: jot.ColorKeywords = 'palegreen'
 
     /* define jot options */
-    const options: Options = { showTimestamp: true, textColor }
+    const options: jot.Options = { showTimestamp: true, textColor }
+
+    /* setup spy */
+    const spy = jest.spyOn(jot, 'log')
 
     /* call the logger */
-    const { finalMessage, ...output } = jot.log(message, options)!
+    jot.log(message, options)
 
-    /* extract the timestamp text */
-    const timestamp = extractTimestamp(finalMessage)
-
-    /* create config object */
-    const config = [
-      { text: timestamp, color: 'grey' },
-      { text: message, color: textColor }
-    ]
-
-    /* extract the chalk-ified text */
-    const [coloredTime, coloredText] = applyChalk(config)
-
-    /* create how the chalk output should be */
-    const comparator = coloredTime + coloredText
-
-    /* ensure options are correct */
-    expect(output).toEqual(options)
-
-    /* ensure a time is included in the form of [hh:mm:ss]: */
-    expect(hasTime(finalMessage)).toBe(true)
-
-    /* ensure the surrounding chalk ansi color escape codes are correct */
-    expect(finalMessage).toEqual(comparator)
+    /* assert on call */
+    expect(spy).toHaveBeenCalledWith(message, options)
   })
 
   it('logs without timestamp', () => {
@@ -111,37 +82,19 @@ describe('#jot.log', () => {
       "If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success."
 
     /* define the text color */
-    const textColor: ColorKeywords = 'blanchedalmond'
+    const textColor: jot.ColorKeywords = 'blanchedalmond'
 
     /* define jot options */
-    const options: Options = { showTimestamp: false, textColor }
+    const options: jot.Options = { showTimestamp: false, textColor }
 
-    /* call the logger */
-    const { finalMessage, ...output } = jot.log(message, options)!
+    /* setup spy */
+    const spy = jest.spyOn(jot, 'log')
 
-    /* extract the timestamp text */
-    const timestamp = extractTimestamp(finalMessage)
+    /* log message */
+    jot.log(message, options)
 
-    /* create config object */
-    const config = [
-      { text: timestamp, color: 'grey' },
-      { text: message, color: textColor }
-    ]
-
-    /* extract the chalk-ified text */
-    const [coloredTime, coloredText] = applyChalk(config)
-
-    /* create how the chalk output should be */
-    const comparator = coloredTime + coloredText
-
-    /* ensure options are correct */
-    expect(output).toEqual(options)
-
-    /* ensure a time is included in the form of [hh:mm:ss]: */
-    expect(hasTime(finalMessage)).toBe(false)
-
-    /* ensure the surrounding chalk ansi color escape codes are correct */
-    expect(finalMessage).toEqual(comparator)
+    /* assert on call */
+    expect(spy).toHaveBeenCalledWith(message, options)
   })
 
   it('logs custom timestamp color', () => {
@@ -150,34 +103,19 @@ describe('#jot.log', () => {
       'You have brains in your head. You have feet in your shoes. You can steer yourself any direction you choose.'
 
     /* define the text color */
-    const timestampColor: ColorKeywords = 'darkorange'
+    const timestampColor: jot.ColorKeywords = 'darkorange'
 
     /* define jot options */
-    const options: Options = { timestampColor }
+    const options: jot.Options = { timestampColor }
 
-    /* call the logger */
-    const { finalMessage, ...output } = jot.log(message, options)!
+    /* setup spy */
+    const spy = jest.spyOn(jot, 'log')
 
-    /* extract the timestamp text */
-    const timestamp = extractTimestamp(finalMessage)
+    /* log message */
+    jot.log(message, options)
 
-    /* create config object */
-    const config = [{ text: timestamp, color: timestampColor }]
-
-    /* extract the chalk-ified text */
-    const [coloredTime] = applyChalk(config)
-
-    /* create how the chalk output should be */
-    const comparator = coloredTime + chalk.keyword('white')(message)
-
-    /* ensure options are correct */
-    expect(output).toEqual(options)
-
-    /* ensure a time is included in the form of [hh:mm:ss]: */
-    expect(hasTime(finalMessage)).toBe(true)
-
-    /* ensure the surrounding chalk ansi color escape codes are correct */
-    expect(finalMessage).toEqual(comparator)
+    /* assert on call */
+    expect(spy).toHaveBeenCalledWith(message, options)
   })
 
   it('traces an object', () => {
@@ -192,22 +130,19 @@ describe('#jot.log', () => {
     }
 
     /* define the text color */
-    const textColor: ColorKeywords = 'deeppink'
+    const textColor: jot.ColorKeywords = 'deeppink'
 
     /* define jot options */
-    const options: Options = { showTimestamp: true, textColor }
+    const options: jot.Options = { showTimestamp: true, textColor }
 
-    /* call the logger */
-    const { finalMessage, ...output } = jot.log(message, options)!
+    /* setup spy */
+    const spy = jest.spyOn(jot, 'log')
 
-    /* extract the timestamp text */
-    const timestamp = extractTimestamp(finalMessage)
+    /* log message */
+    jot.log(message, options)
 
-    /* ensure options are correct */
-    expect(output).toEqual(options)
-
-    /* ensure a time is included in the form of [hh:mm:ss]: */
-    expect(hasTime(finalMessage)).toBe(true)
+    /* assert on call */
+    expect(spy).toHaveBeenCalledWith(message, options)
   })
 
   it('traces an array of objects', () => {
@@ -221,21 +156,18 @@ describe('#jot.log', () => {
     ]
 
     /* define the text color */
-    const textColor: ColorKeywords = 'deepskyblue'
+    const textColor: jot.ColorKeywords = 'deepskyblue'
 
     /* define jot options */
-    const options: Options = { showTimestamp: true, textColor }
+    const options: jot.Options = { showTimestamp: true, textColor }
 
-    /* call the logger */
-    const { finalMessage, ...output } = jot.log(message, options)!
+    /* setup spy */
+    const spy = jest.spyOn(jot, 'log')
 
-    /* extract the timestamp text */
-    const timestamp = extractTimestamp(finalMessage)
+    /* log message */
+    jot.log(message, options)
 
-    /* ensure options are correct */
-    expect(output).toEqual(options)
-
-    /* ensure a time is included in the form of [hh:mm:ss]: */
-    expect(hasTime(finalMessage)).toBe(true)
+    /* assert on call */
+    expect(spy).toHaveBeenCalledWith(message, options)
   })
 })
